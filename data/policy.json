@@ -1,0 +1,202 @@
+﻿[
+	{
+		"category": 1,
+		"policy": [
+			{
+				"round": 0,
+				"point": {
+					"w": 3,
+					"t": 1
+				}
+			},
+			{
+				"round": 1,
+				"point": {
+					"w": 4,
+					"t": 1
+				}
+			},
+			{
+				"round": 2,
+				"point": {
+					"w": 5,
+					"t": 2
+				}
+			},
+			{
+				"round": 3,
+				"point": {
+					"w": 6,
+					"t": 2
+				}
+			},
+			{
+				"round": 4,
+				"point": {
+					"w": 8,
+					"t": 2
+				}
+			}
+		]
+	},
+	{
+		"category": 2,
+		"policy": [
+			{
+				"round": 0,
+				"point": {
+					"w": 4,
+					"t": 1
+				}
+			},
+			{
+				"round": 1,
+				"point": {
+					"w": 5,
+					"t": 2
+				}
+			},
+			{
+				"round": 2,
+				"point": {
+					"w": 6,
+					"t": 2
+				}
+			},
+			{
+				"round": 3,
+				"point": {
+					"w": 8,
+					"t": 3
+				}
+			},
+			{
+				"round": 4,
+				"point": {
+					"w": 10,
+					"t": 3
+				}
+			}
+		]
+	},
+	{
+		"category": 3,
+		"policy": [
+			{
+				"round": 0,
+				"point": {
+					"w": 5,
+					"t": 1
+				}
+			},
+			{
+				"round": 1,
+				"point": {
+					"w": 7,
+					"t": 2
+				}
+			},
+			{
+				"round": 2,
+				"point": {
+					"w": 9,
+					"t": 3
+				}
+			},
+			{
+				"round": 3,
+				"point": {
+					"w": 12,
+					"t": 4
+				}
+			},
+			{
+				"round": 4,
+				"point": {
+					"w": 15,
+					"t": 5
+				}
+			}
+		]
+	},
+	{
+		"category": 4,
+		"policy": [
+			{
+				"round": 0,
+				"point": {
+					"w": 6,
+					"t": 2
+				}
+			},
+			{
+				"round": 1,
+				"point": {
+					"w": 8,
+					"t": 3
+				}
+			},
+			{
+				"round": 2,
+				"point": {
+					"w": 11,
+					"t": 4
+				}
+			},
+			{
+				"round": 3,
+				"point": {
+					"w": 14,
+					"t": 5
+				}
+			},
+			{
+				"round": 4,
+				"point": {
+					"w": 20,
+					"t": 6
+				}
+			}
+		]
+	},
+	{
+		"category": 5,
+		"policy": [
+			{
+				"round": 0,
+				"point": {
+					"w": 8,
+					"t": 3
+				}
+			},
+			{
+				"round": 1,
+				"point": {
+					"w": 10,
+					"t": 4
+				}
+			},
+			{
+				"round": 2,
+				"point": {
+					"w": 14,
+					"t": 6
+				}
+			},
+			{
+				"round": 3,
+				"point": {
+					"w": 18,
+					"t": 7
+				}
+			},
+			{
+				"round": 4,
+				"point": {
+					"w": 25,
+					"t": 10
+				}
+			}
+		]
+	}
+]

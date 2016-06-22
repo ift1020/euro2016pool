@@ -1,0 +1,125 @@
+﻿[
+	{
+		"category": 1,
+		"teams": [
+			{
+				"name": "Belgium",
+				"rank": 2
+			},
+			{
+				"name": "Germany",
+				"rank": 4
+			},
+			{
+				"name": "Spain",
+				"rank": 6
+			},
+			{
+				"name": "France",
+				"rank": 17
+			}
+		]
+	},
+	{
+		"category": 2,
+		"teams": [
+			{
+				"name": "Portugal",
+				"rank": 8
+			},
+			{
+				"name": "Austria",
+				"rank": 10
+			},
+			{
+				"name": "England",
+				"rank": 11
+			},
+			{
+				"name": "Italy",
+				"rank": 12
+			},
+			{
+				"name": "Switzerland",
+				"rank": 15
+			}
+		]
+	},
+	{
+		"category": 3,
+		"teams": [
+			{
+				"name": "Turkey",
+				"rank": 18
+			},
+			{
+				"name": "Ukraine",
+				"rank": 19
+			},
+			{
+				"name": "Hungary",
+				"rank": 20
+			},
+			{
+				"name": "Romania",
+				"rank": 22
+			},
+			{
+				"name": "Poland",
+				"rank": 27
+			},
+			{
+				"name": "Croatia",
+				"rank": 27
+			}
+		]
+	},
+	{
+		"category": 4,
+		"teams": [
+			{
+				"name": "N_Ireland",
+				"rank": 25
+			},
+			{
+				"name": "Wales",
+				"rank": 26
+			},
+			{
+				"name": "Russia",
+				"rank": 29
+			},
+			{
+				"name": "Czech",
+				"rank": 30
+			},
+			{
+				"name": "Sweden",
+				"rank": 35
+			}
+		]
+	},
+	{
+		"category": 5,
+		"teams": [
+			{
+				"name": "Slovakia",
+				"rank": 24
+			},
+			{
+				"name": "R_Ireland",
+				"rank": 33
+			},
+			{
+				"name": "Iceland",
+				"rank": 34
+			},
+			{
+				"name": "Albania",
+				"rank": 42
+			}
+		]
+	}
+]
+			
+			

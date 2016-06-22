@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      
+      <link type="text/css" rel="stylesheet" href="css/style.css?_ver=1.0.2"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="icon" href="./img/20.png">
+    </head>
+
+    <body>
+      <div id="container" class="center-align">
+      	<div id="dvHeader" class="valign-wrapper">
+      		<img src="./img/euro-2016.png" />
+      		<span>EURO 2016 Soccer Pool</span>
+      	</div>
+      	
+      	<div id="dvEntry">
+      		<div class="row center-align rowYourEntries" style="width: 100%; padding-bottom: 20px; border-bottom: 1px dotted #ddd">
+  				<div class="col s4 dvLabel" style="color: #00897b"><i class="small material-icons">visibility</i>Your Entries</div>
+  				<div class="col s6 dvSelect">
+  					<select id="sel-entry" class="browser-default">
+      				</select>
+  				</div>
+  				<div class="col s2 dvPoint">
+  					<a id="btnRank" class="waves-effect waves-light btn"><i class="material-icons left">trending_up</i>Ranking
+  						<span class="badge">0</span>
+  					</a>
+  				</div>
+  			</div>
+      		
+      		<div id="dvChoice" >
+      			<div class="row center-align rowST" style="width: 100%">
+      				<div class="col s4 dvLabel">SPECIAL CHOICE TEAM</div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat0" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Belgium">Belgium</option>
+      						<option value="France">France</option>
+      						<option value="Germany">Germany</option>
+      						<option value="Spain">Spain</option>
+      						<option value="Austria">Austria</option>
+      						<option value="England">England</option>
+      						<option value="Italy">Italy</option>
+      						<option value="Portugal">Portugal</option>
+      						<option value="Switzerland">Switzerland</option>
+      						<option value="Croatia">Croatia</option>
+      						<option value="Hungary">Hungary</option>
+      						<option value="Poland">Poland</option>
+      						<option value="Romania">Romania</option>
+      						<option value="Turkey">Turkey</option>
+      						<option value="Ukraine">Ukraine</option>
+      						<option value="Czech">Czech</option>
+      						<option value="N_Ireland">N_Ireland</option>
+      						<option value="Russia">Russia</option>
+      						<option value="Sweden">Sweden</option>
+      						<option value="Wales">Wales</option>
+      						<option value="Albania">Albania</option>
+      						<option value="Iceland">Iceland</option>
+      						<option value="R_Ireland">R_Ireland</option>
+      						<option value="Slovakia">Slovakia</option>
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="stPoint" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowCat1" style="width: 100%">
+      				<div class="col s4 dvLabel">CATEGORY I TEAM </div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat1" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Belgium">Belgium</option>
+      						<option value="France">France</option>
+      						<option value="Germany">Germany</option>
+      						<option value="Spain">Spain</option>	
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="cat1Point" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowCat2" style="width: 100%">
+      				<div class="col s4 dvLabel">CATEGORY II TEAM </div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat2" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Austria">Austria</option>
+      						<option value="England">England</option>
+      						<option value="Italy">Italy</option>
+      						<option value="Portugal">Portugal</option>
+      						<option value="Switzerland">Switzerland</option>	
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="cat2Point" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowCat3" style="width: 100%">
+      				<div class="col s4 dvLabel">CATEGORY III TEAM </div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat3" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Croatia">Croatia</option>
+      						<option value="Hungary">Hungary</option>
+      						<option value="Poland">Poland</option>
+      						<option value="Romania">Romania</option>
+      						<option value="Turkey">Turkey</option>
+      						<option value="Ukraine">Ukraine</option>	
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="cat3Point" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowCat4" style="width: 100%">
+      				<div class="col s4 dvLabel">CATEGORY IV or V TEAM </div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat4" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Czech">Czech</option>
+      						<option value="N_Ireland">N_Ireland</option>
+      						<option value="Russia">Russia</option>
+      						<option value="Sweden">Sweden</option>
+      						<option value="Wales">Wales</option>
+      						<option value="Albania">Albania</option>
+      						<option value="Iceland">Iceland</option>
+      						<option value="R_Ireland">R_Ireland</option>
+      						<option value="Slovakia">Slovakia</option>
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="cat4Point" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowAT" style="width: 100%">
+      				<div class="col s4 dvLabel">ANY CATEGORY TEAM</div>
+      				<div class="col s6 dvSelect">
+      					<select id="sel-cat5" class="browser-default">
+      						<option value="ZZ">Choice One</option>
+      						<option value="Belgium">Belgium</option>
+      						<option value="France">France</option>
+      						<option value="Germany">Germany</option>
+      						<option value="Spain">Spain</option>
+      						<option value="Austria">Austria</option>
+      						<option value="England">England</option>
+      						<option value="Italy">Italy</option>
+      						<option value="Portugal">Portugal</option>
+      						<option value="Switzerland">Switzerland</option>
+      						<option value="Croatia">Croatia</option>
+      						<option value="Hungary">Hungary</option>
+      						<option value="Poland">Poland</option>
+      						<option value="Romania">Romania</option>
+      						<option value="Turkey">Turkey</option>
+      						<option value="Ukraine">Ukraine</option>
+      						<option value="Czech">Czech</option>
+      						<option value="N_Ireland">N_Ireland</option>
+      						<option value="Russia">Russia</option>
+      						<option value="Sweden">Sweden</option>
+      						<option value="Wales">Wales</option>
+      						<option value="Albania">Albania</option>
+      						<option value="Iceland">Iceland</option>
+      						<option value="R_Ireland">R_Ireland</option>
+      						<option value="Slovakia">Slovakia</option>
+      					</select>
+      				</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="atPoint" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      			
+      			<div class="row center-align rowTotal" style="width: 100%; padding-bottom: 20px; border-bottom: 1px dotted #ddd">
+      				<div class="col s4 dvLabel"><i class="small material-icons">stars</i></div>
+      				<div class="col s6 dvLabel">Total</div>
+      				<div class="col s2 dvPoint">
+      					<input value="0" id="totalPoint" type="text" readonly style="text-align: center">
+      				</div>
+      			</div>
+      		</div>	
+      	</div>	
+      	
+      	<div id="funcBar1">
+      		<a id="btnCalc" class="waves-effect waves-light btn-large"><i class="material-icons left">done</i>Shoot</a>
+      		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      		<a id="btnReset" class="waves-effect waves-light btn-large"><i class="material-icons left">reply</i>Reset</a>
+      	</div>
+      	
+      	<div id="funcBar2">
+      		<div class="row center-align" style="width: 100%">
+	      		<div class="col s2">
+	      			<a id="btnSave" class="waves-effect waves-light btn" style="margin-right: 20px"><i class="material-icons left">thumb_up</i>Save</a>
+	      		</div>
+	      		<div class="col s8">   
+	      		    <input value="" id="inputEntryName" type="text" placeholder="Save current shoot as your entry, please type the name of the entry">
+	      		</div>
+	      		<div class="col s2">
+	      			<a id="btnDele" class="waves-effect waves-light btn"><i class="material-icons left">delete</i>Remove</a>
+	      		</div>
+      		</div>
+      	</div>
+      </div>	
+    	
+    	
+    	
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/app.js?_ver=2.2.3"></script>
+    </body>
+</html>

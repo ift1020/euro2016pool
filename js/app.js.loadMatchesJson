@@ -1,0 +1,303 @@
+﻿var epool = epool || {};
+
+var teamsJson = '[{"category":1,"teams":[{"name":"Belgium","rank":2},{"name":"Germany","rank":4},{"name":"Spain","rank":6},{"name":"France","rank":17}]},{"category":2,"teams":[{"name":"Portugal","rank":8},{"name":"Austria","rank":10},{"name":"England","rank":11},{"name":"Italy","rank":12},{"name":"Switzerland","rank":15}]},{"category":3,"teams":[{"name":"Turkey","rank":18},{"name":"Ukraine","rank":19},{"name":"Hungary","rank":20},{"name":"Romania","rank":22},{"name":"Poland","rank":27},{"name":"Croatia","rank":27}]},{"category":4,"teams":[{"name":"N_Ireland","rank":25},{"name":"Wales","rank":26},{"name":"Russia","rank":29},{"name":"Czech","rank":30},{"name":"Sweden","rank":35}]},{"category":5,"teams":[{"name":"Slovakia","rank":24},{"name":"R_Ireland","rank":33},{"name":"Iceland","rank":34},{"name":"Albania","rank":42}]}]',
+	policyJson = '[{"category":1,"policy":[{"round":0,"point":{"w":3,"t":1}},{"round":1,"point":{"w":4,"t":1}},{"round":2,"point":{"w":5,"t":2}},{"round":3,"point":{"w":6,"t":2}},{"round":4,"point":{"w":8,"t":2}}]},{"category":2,"policy":[{"round":0,"point":{"w":4,"t":1}},{"round":1,"point":{"w":5,"t":2}},{"round":2,"point":{"w":6,"t":2}},{"round":3,"point":{"w":8,"t":3}},{"round":4,"point":{"w":10,"t":3}}]},{"category":3,"policy":[{"round":0,"point":{"w":5,"t":1}},{"round":1,"point":{"w":7,"t":2}},{"round":2,"point":{"w":9,"t":3}},{"round":3,"point":{"w":12,"t":4}},{"round":4,"point":{"w":15,"t":5}}]},{"category":4,"policy":[{"round":0,"point":{"w":6,"t":2}},{"round":1,"point":{"w":8,"t":3}},{"round":2,"point":{"w":11,"t":4}},{"round":3,"point":{"w":14,"t":5}},{"round":4,"point":{"w":20,"t":6}}]},{"category":5,"policy":[{"round":0,"point":{"w":8,"t":3}},{"round":1,"point":{"w":10,"t":4}},{"round":2,"point":{"w":14,"t":6}},{"round":3,"point":{"w":18,"t":7}},{"round":4,"point":{"w":25,"t":10}}]}]';
+
+var matchesJson = '[{"teamName":"France","round":0,"result":"w","score":2,"rival":"Romania"},{"teamName":"Romania","round":0,"result":"l","score":1,"rival":"France"},{"teamName":"Switzerland","round":0,"result":"w","score":1,"rival":"Albania"},{"teamName":"Albania","round":0,"result":"l","score":0,"rival":"Switzerland"},{"teamName":"Wales","round":0,"result":"w","score":2,"rival":"Slovakia"},{"teamName":"Slovakia","round":0,"result":"l","score":1,"rival":"Wales"},{"teamName":"England","round":0,"result":"t","score":1,"rival":"Russia"},{"teamName":"Russia","round":0,"result":"t","score":1,"rival":"England"},{"teamName":"Turkey","round":0,"result":"l","score":0,"rival":"Croatia"},{"teamName":"Croatia","round":0,"result":"w","score":1,"rival":"Turkey"},{"teamName":"Poland","round":0,"result":"w","score":1,"rival":"N_Ireland"},{"teamName":"N_Ireland","round":0,"result":"l","score":0,"rival":"Poland"},{"teamName":"Germany","round":0,"result":"w","score":2,"rival":"Ukraine"},{"teamName":"Ukraine","round":0,"result":"l","score":0,"rival":"Germany"}]';
+
+epool.teams = {};
+epool.policy = {};
+epool.matches = {};
+epool.entries = [];
+epool.entry = {
+	id: 0,
+	name: "",
+	t0: "",
+	p0: 0,
+	t1: "",
+	p1: 0,
+	t2: "",
+	p2: 0,
+	t3: "",
+	p3: 0,
+	t4: "",
+	p4: 0,
+	t5: "",
+	p5: 0,
+	pp: 0
+}
+epool.currentId = 0;
+epool.nextId = epool.entries.length;
+
+epool.init = function () {
+	epool.teams = JSON.parse(teamsJson);
+	epool.policy = JSON.parse(policyJson);
+	//epool.loadData('./data/matches.json');
+	epool.matches = JSON.parse(matchesJson);
+};
+
+epool.loadData = function($url) {
+	$.ajax({
+      url: $url,
+      dataType: 'json',
+      cache: true,
+      async: true,      // avoid XMLHttpRequest request within the main thread
+      success: function(data) {
+        epool.matches = data;
+      },
+      error: function(xhr, status, err) {
+        console.error($url, status, err.toString());
+      }
+    });
+}
+
+epool.calc = function(team) {
+	var point = 0;
+	var category = epool.categoryOfTeam(team);
+	
+	if (!category) {
+		console.error(team + " is not in EURO 2016");
+		return false;
+	}
+	
+	for (var i = 0; i < epool.matches.length; i++) { 
+		if (team === epool.matches[i].teamName) {
+			if (epool.matches[i].result === 'w') 
+				point += epool.policy[category-1].policy[epool.matches[i].round].point.w;
+			else if (epool.matches[i].result === 't') 
+				point += epool.policy[category-1].policy[epool.matches[i].round].point.t;
+				
+			if (epool.matches[i].score >= 3) point++;
+		}
+	}
+	
+	return point;
+}
+
+epool.categoryOfTeam = function(team) {
+	for (var i = 0; i < epool.teams.length; i++) { 
+		for (var j = 0; j < epool.teams[i].teams.length; j++) {
+			if (team === epool.teams[i].teams[j].name) {
+				return epool.teams[i].category;
+			}
+		}
+	}
+	return false;
+}
+
+epool.setLocalStorage = function(entries) {
+	localStorage.setItem("entriesJson", JSON.stringify(entries));
+}
+
+epool.removeLocalStorage = function() {
+	localStorage.removeItem("entriesJson");
+}
+
+epool.setEntryValue = function() {
+	epool.entry.t0 = $('#sel-cat0').val();
+	epool.entry.t1 = $('#sel-cat1').val();
+	epool.entry.t2 = $('#sel-cat2').val();
+	epool.entry.t3 = $('#sel-cat3').val();
+	epool.entry.t4 = $('#sel-cat4').val();
+	epool.entry.t5 = $('#sel-cat5').val();
+	
+	epool.entry.p0 = epool.calc(epool.entry.t0) * 2;
+	epool.entry.p1 = epool.calc(epool.entry.t1);
+	epool.entry.p2 = epool.calc(epool.entry.t2);
+	epool.entry.p3 = epool.calc(epool.entry.t3);
+	epool.entry.p4 = epool.calc(epool.entry.t4);
+	epool.entry.p5 = epool.calc(epool.entry.t5);
+	epool.entry.pp = epool.entry.p0 + epool.entry.p1 + epool.entry.p2 + epool.entry.p3 + epool.entry.p4 + epool.entry.p5;
+	    	
+	$('#stPoint').val(epool.entry.p0);
+	$('#cat1Point').val(epool.entry.p1);
+	$('#cat2Point').val(epool.entry.p2);
+	$('#cat3Point').val(epool.entry.p3);
+	$('#cat4Point').val(epool.entry.p4);
+	$('#atPoint').val(epool.entry.p5);
+	$('#totalPoint').val(epool.entry.pp);
+}
+
+epool.updateCurrentEntryFromBuffer = function(i) {
+	epool.entries[i].t0 = epool.entry.t0;
+	epool.entries[i].t1 = epool.entry.t1;
+	epool.entries[i].t2 = epool.entry.t2;
+	epool.entries[i].t3 = epool.entry.t3;
+	epool.entries[i].t4 = epool.entry.t4;
+	epool.entries[i].t5 = epool.entry.t5;
+	
+	epool.entries[i].p0 = epool.entry.p0;
+	epool.entries[i].p1 = epool.entry.p1;
+	epool.entries[i].p2 = epool.entry.p2;
+	epool.entries[i].p3 = epool.entry.p3;
+	epool.entries[i].p4 = epool.entry.p4;
+	epool.entries[i].p5 = epool.entry.p5;
+	epool.entries[i].pp = epool.entry.pp;
+}
+
+epool.resetEntry = function() {
+	epool.entry.id = 0;
+	epool.entry.name = "";
+	epool.entry.t0 = "";
+	epool.entry.p0 = 0;
+	epool.entry.t1 = "";
+	epool.entry.p1 = 0;
+	epool.entry.t2 = "";
+	epool.entry.p2 = 0;
+	epool.entry.t3 = "";
+	epool.entry.p3 = 0;
+	epool.entry.t4 = "";
+	epool.entry.p4 = 0;
+	epool.entry.t5 = "";
+	epool.entry.p5 = 0;
+	epool.entry.pp = 0;
+}
+
+epool.setSelectOptions = function(entry) {
+	$('#sel-cat0').val(entry.t0);
+	$('#sel-cat1').val(entry.t1);
+	$('#sel-cat2').val(entry.t2);
+	$('#sel-cat3').val(entry.t3);
+	$('#sel-cat4').val(entry.t4);
+	$('#sel-cat5').val(entry.t5);
+}
+
+epool.resetSelectOptions = function() {
+	$('#sel-cat0').val('ZZ');
+	$('#sel-cat1').val('ZZ');
+	$('#sel-cat2').val('ZZ');
+	$('#sel-cat3').val('ZZ');
+	$('#sel-cat4').val('ZZ');
+	$('#sel-cat5').val('ZZ');
+}
+
+epool.isEntryExist = function(name) {
+	for (var i = 0; i < epool.entries.length; i++) {
+		if (name === epool.entries[i].name) return true;
+	}
+	return false;
+}
+
+$(document).ready(function () {
+    epool.init();
+    
+    $('#btnCalc').on('click', function() {
+    	epool.setEntryValue();
+    	
+    	//epool.setLocalStorage(epool.entry);
+    });
+    
+    $('#btnReset').on('click', function() {
+    	epool.resetSelectOptions();
+    });
+    
+    $('#btnSave').on('click', function() {
+    	var name = $('#inputEntryName').val().trim();
+    	if (name !== "" && epool.isEntryExist(name) !== true) {
+    		epool.entry.name = name;
+    		epool.entry.id = epool.nextId;
+    		epool.setEntryValue();		// set buffer entry's value
+    		var newEntry = $.extend(true, {}, epool.entry);
+    		epool.entries.push(newEntry);
+    		
+    		epool.nextId = epool.entries.length;
+    		epool.currentId = epool.nextId - 1;
+    		
+    		// update Local Storage
+    		epool.setLocalStorage(epool.entries);	
+    		
+    		// update entry selection's option
+    		$("#sel-entry").append($('<option>', {
+                value: epool.entries[epool.currentId].id,
+                text: epool.entries[epool.currentId].name
+            }));
+            
+            // point to new entry
+            $("#sel-entry").val(epool.currentId);
+            
+            Materialize.toast('entry of "' + epool.entries[epool.currentId].name + '" Saved', 3000);
+    	}
+    	else {
+    		if (name === "")
+    			Materialize.toast('A name of the entry is required', 2500);
+    		else if (epool.isEntryExist(name) === true)
+    			Materialize.toast('An entry with same name is alreay exist', 2500);
+    	}
+    });
+    
+    $('#btnDele').on('click', function() {
+    	if (epool.entries.length > 0) {
+    		var arrDeletedEntries = epool.entries.splice(epool.currentId, 1);
+    		
+    		if (epool.entries.length !== 0) {
+	    		if (parseInt(epool.currentId) === epool.entries.length) 
+	    			epool.currentId = epool.currentId - 1 ;	// if deleted the last one, offset -1
+	    		else {
+		    		for (var i = epool.currentId; i < epool.entries.length; i++) {
+		    			epool.entries[i].id = i;	
+		    		}
+	    		}
+	    		
+	    		// refresh the entry selection's options
+	    		var s = $("#sel-entry");
+	    		s.empty();
+	    		for (var i = 0; i < epool.entries.length; i++) {
+	    			s.append($('<option>', {
+		                value: epool.entries[i].id,
+		                text:  epool.entries[i].name
+		            }));	
+	    		}
+	    		
+	    		// point to current entry
+	    		$('#sel-entry').val(epool.currentId);
+	    		$('#sel-entry').trigger('change');
+	    	}
+	    	else {
+	    		$("#sel-entry").empty();
+	    		$("#sel-entry").val('');
+	    		epool.nextId = 0;
+	    		epool.removeLocalStorage();
+	    	}
+	    	
+	    	Materialize.toast('entry of "' + arrDeletedEntries[0].name + '" Deleted', 3000);
+    	}
+    	else
+    		Materialize.toast('You don\'t save any entry yet', 2500);
+    });
+    
+    $('#btnRank').on('click', function() {
+    	Materialize.toast('The function is in developing, it will be released in next version', 2500);
+    });
+    
+    if (localStorage.getItem("entriesJson")){
+		var entriesObj = JSON.parse(localStorage.getItem("entriesJson"));
+
+		//console.info(entriesObj);
+		var s = $("#sel-entry");
+		for (var i = 0; i < entriesObj.length; i++) {
+			epool.entries.push(entriesObj[i]);
+			
+			s.append($('<option>', {
+                value: entriesObj[i].id,
+                text:  entriesObj[i].name
+            }));
+		}
+		epool.currentId = 0;
+		epool.nextId = epool.entries.length;
+    	
+    	$("#sel-entry").on('change', function() {
+    		epool.currentId = $(this).val();
+    		epool.setSelectOptions(epool.entries[epool.currentId]);
+    		
+    		epool.setEntryValue();
+    		epool.updateCurrentEntryFromBuffer(epool.currentId);
+    		
+    		epool.setLocalStorage(epool.entries);
+    	});
+    	
+    	epool.setSelectOptions(epool.entries[0]);
+    	
+    	//setTimeout(function () { $("#sel-entry").trigger('change'); }, 1000);
+		$("#sel-entry").trigger('change');
+	}
+});

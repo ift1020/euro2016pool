@@ -1,0 +1,156 @@
+﻿[
+  {
+    "teamName": "France",
+    "round": 0,
+    "result": "w",
+    "score": 2,
+    "rival": "Romania"
+  },
+  {
+    "teamName": "Romania",
+    "round": 0,
+    "result": "l",
+    "score": 1,
+    "rival": "France"
+  },
+  {
+    "teamName": "Switzerland",
+    "round": 0,
+    "result": "w",
+    "score": 1,
+    "rival": "Albania"
+  },
+  {
+    "teamName": "Albania",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Switzerland"
+  },
+  {
+    "teamName": "Wales",
+    "round": 0,
+    "result": "w",
+    "score": 2,
+    "rival": "Slovakia"
+  },
+  {
+    "teamName": "Slovakia",
+    "round": 0,
+    "result": "l",
+    "score": 1,
+    "rival": "Wales"
+  },
+  {
+    "teamName": "England",
+    "round": 0,
+    "result": "t",
+    "score": 1,
+    "rival": "Russia"
+  },
+  {
+    "teamName": "Russia",
+    "round": 0,
+    "result": "t",
+    "score": 1,
+    "rival": "England"
+  },
+  {
+    "teamName": "Turkey",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Croatia"
+  },
+  {
+    "teamName": "Croatia",
+    "round": 0,
+    "result": "w",
+    "score": 1,
+    "rival": "Turkey"
+  },
+  {
+    "teamName": "Poland",
+    "round": 0,
+    "result": "w",
+    "score": 1,
+    "rival": "N_Ireland"
+  },
+  {
+    "teamName": "N_Ireland",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Poland"
+  },
+  {
+    "teamName": "Germany",
+    "round": 0,
+    "result": "w",
+    "score": 2,
+    "rival": "Ukraine"
+  },
+  {
+    "teamName": "Ukraine",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Germany"
+  },
+  {
+    "teamName": "Spain",
+    "round": 0,
+    "result": "w",
+    "score": 1,
+    "rival": "Czech"
+  },
+  {
+    "teamName": "Czech",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Spain"
+  },
+  {
+    "teamName": "R_Ireland",
+    "round": 0,
+    "result": "t",
+    "score": 1,
+    "rival": "Sweden"
+  },
+  {
+    "teamName": "Sweden",
+    "round": 0,
+    "result": "t",
+    "score": 1,
+    "rival": "R_Ireland"
+  },
+  {
+    "teamName": "Belgium",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Italy"
+  },
+  {
+    "teamName": "Italy",
+    "round": 0,
+    "result": "w",
+    "score": 2,
+    "rival": "Belgium"
+  },
+  {
+    "teamName": "Austria",
+    "round": 0,
+    "result": "l",
+    "score": 0,
+    "rival": "Hungary"
+  },
+  {
+    "teamName": "Hungary",
+    "round": 0,
+    "result": "w",
+    "score": 2,
+    "rival": "Austria"
+  }
+]

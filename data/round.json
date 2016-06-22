@@ -1,0 +1,22 @@
+﻿[
+	{
+		"round": 0,
+		"desc": "Round Robin"
+	},
+	{
+		"round": 1,
+		"desc": "Round of 16"
+	},
+	{
+		"round": 2,
+		"desc": "Quarter Final"
+	},
+	{
+		"round": 3,
+		"desc": "Semi Final"
+	},
+	{
+		"round": 4,
+		"desc": "Final"
+	}
+]
